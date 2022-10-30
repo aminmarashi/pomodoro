@@ -4,8 +4,7 @@
   "description": "",
   "main": "get_token.js",
   "scripts": {
-    "start": "node api/index.js",
-    "deploy": "vercel --prod -A vercel.json"
+    "start": "node api/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +13,5 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.4.0",
     "googleapis": "^42.0.0"
-  },
-  "devDependencies": {
-    "vercel": "^21.1.0"
   }
 }
