@@ -9,7 +9,6 @@ class LiveStore {
 
     async init() {
         await this.reload();
-        await this.subscribe();
         this.handlePushMessage();
     }
 
@@ -29,14 +28,14 @@ class LiveStore {
     async requestUpdate(change = {}) {
         const { topic, id } = this;
 
-        await this.saveToStore({...change, timestamp: new Date().getTime()});
+        await this.saveToStore({ ...change, timestamp: new Date().getTime() });
 
         this.post('/send', { topic, message: { topic, id, store: this.store } });
     }
 
     async sendNotification(notification) {
         const { topic } = this;
-        this.post('/send', {topic,notification });
+        this.post('/send', { topic, notification });
     }
 
     async subscribe() {
@@ -75,11 +74,11 @@ class LiveStore {
     }
 
     async saveToStore(change) {
-        const {topic} = this;
+        const { topic } = this;
 
         const currentStore = await this.get(this.topic);
 
-        const store = {...currentStore, ...change};
+        const store = { ...currentStore, ...change };
 
         this.store = store;
 

@@ -30,6 +30,10 @@ class App extends preact.Component {
     componentDidMount() {
         this.liveStore = new LiveStore({ messaging, topic });
         this.liveStore.init();
+        this.isNotificationFailed = false;
+        this.liveStore.subscribe().catch(() => {
+            this.isNotificationFailed = true;
+        });
         this.timer = new Timer(this.liveStore);
 
         // Rerender on timer update
@@ -39,6 +43,7 @@ class App extends preact.Component {
         this.start = this.timer.start.bind(this.timer);
         this.pause = this.timer.pause.bind(this.timer);
         this.reset = this.timer.reset.bind(this.timer);
+        this.sync = this.liveStore.subscribe.bind(this.liveStore);
         this.onTypeChange = this.timer.setType.bind(this.timer);
         this.onTimeChange = this.timer.setTypeToSeconds.bind(this.timer);
         this.onResetTypes = this.timer.resetTypeToSeconds.bind(this.timer);
@@ -91,6 +96,17 @@ class App extends preact.Component {
                     >
                         Reset
                     </button>
+                    ${this.isNotificationFailed ?
+                html`
+                        <button
+                            class="waves-effect waves-light btn-small"
+                            onClick=${this.sync}
+                        >
+                            Sync
+                        </button>
+                    ` :
+                html``
+            }
                 </div>
             </div>
             <div class="row center-align">
