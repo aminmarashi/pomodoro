@@ -4,12 +4,13 @@
   "description": "",
   "main": "get_token.js",
   "scripts": {
-    "start": "PKEY=\"-----BEGIN PRIVATE KEY-----\\n$PKEY==\\n-----END PRIVATE KEY-----\\n\" node api/index.js",
+    "start": "node api/index.js",
     "deploy": "vercel --prod -A vercel.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "firebase-admin": "^8.4.0",
     "googleapis": "^42.0.0"

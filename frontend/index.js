@@ -6,15 +6,16 @@ if (!topic) {
 }
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyA-cl-Ly_JyTs5QdTOjNKZnYsfZeI0B7SU",
-    authDomain: "pomodoro-lit-codes.firebaseapp.com",
-    databaseURL: "https://pomodoro-lit-codes.firebaseio.com",
-    projectId: "pomodoro-lit-codes",
-    storageBucket: "",
-    messagingSenderId: "373119630380",
-    appId: "1:373119630380:web:25e1146cb81bbb5c"
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDsighbZPEzMXE4zNs9zeOKrPYBj0gt6N8",
+    authDomain: "pomodoro-4b027.firebaseapp.com",
+    projectId: "pomodoro-4b027",
+    storageBucket: "pomodoro-4b027.appspot.com",
+    messagingSenderId: "1076391733143",
+    appId: "1:1076391733143:web:9a8741d0b8ae20628bc6d2"
 };
+
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
