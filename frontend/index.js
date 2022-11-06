@@ -18,7 +18,13 @@ const firebaseConfig = {
 
 
 firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging();
+let messaging
+let displayMessage
+try {
+    messaging = firebase.messaging();
+} catch (error) {
+    displayMessage = error.message;
+}
 
 const $timer = document.querySelector('#timer');
 
@@ -28,6 +34,9 @@ function generateTopic() {
 
 class App extends preact.Component {
     componentDidMount() {
+        if (displayMessage) {
+            return;
+        }
         this.liveStore = new LiveStore({ messaging, topic });
         this.liveStore.init();
         this.isNotificationFailed = false;
@@ -55,9 +64,15 @@ class App extends preact.Component {
     }
 
     render() {
-        if (!this.timer) return html`<div class="progress">
-            <div class="indeterminate"></div>
-        </div>`;
+        if (displayMessage) {
+            return html`<div class="container">
+                <div class="row">
+                    <h2 class="center-align">
+                        <div>${displayMessage}</div>
+                    </h2>
+                </div>
+            </div>`;
+        }
 
         return html`<div class="container">
             <div class="row">
