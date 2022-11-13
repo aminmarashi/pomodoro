@@ -64,6 +64,9 @@ class App extends preact.Component {
     }
 
     render() {
+        if (!this.timer) return html`<div class="progress">
+            <div class="indeterminate"></div>
+        </div>`;
         if (displayMessage) {
             return html`<div class="container">
                 <div class="row">
